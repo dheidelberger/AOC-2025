@@ -1,0 +1,23 @@
+{
+    "name": "aoc2025",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "David Heidelbegrer <david.heidelberger@gmail.com> (http://www.davidheidelberger.com)",
+    "license": "ISC",
+    "type": "module",
+    "dependencies": {
+        "cheerio": "^1.0.0",
+        "clipboardy": "^4.0.0",
+        "colors": "^1.4.0",
+        "dotenv": "^16.4.7",
+        "generatorics": "^1.1.0",
+        "heap": "^0.2.7",
+        "memoizee": "^0.4.17",
+        "node-fetch": "^3.3.2",
+        "pretty-ms": "^9.2.0"
+    }
+}
