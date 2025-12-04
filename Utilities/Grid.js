@@ -19,6 +19,14 @@ function rowColFromKey(key) {
 // function matchStringOrArray() {}
 
 class Cell {
+    /**
+     * Create a Cell object
+     * @param {string} value - The call value
+     * @param {number} row - Cell row
+     * @param {number} column - Cell column
+     * @param {Grid} grid - The grid this cell belongs to
+     * @param {boolean} isOutOfBounds - Whether or not the cell is out of bounds
+     */
     constructor(value, row, column, grid, isOutOfBounds = false) {
         this.value = value;
         this.row = row;
@@ -28,6 +36,13 @@ class Cell {
         this.key = key(row, column);
     }
 
+    /**
+     * Get an array of n cells in each direction
+     * @param {number[][]} directions - Array of directions to go. See Grid.directions
+     * @param {number} [n=-1] - Number of cells to return. Default to -1 which returns to the edge. If a number is specified and returnUndefinedCells is true, will return empty cells up to that number
+     * @param {boolean} [includeSelf=false] - Whether or not to include the cell itself in result
+     * @return {Cell[][]} Array of n-cell arrays for each direction
+     */
     getCellsInDirections(directions, n = -1, includeSelf = false) {
         return this.grid.getCellsFromCoordsInDirections(
             this.row,
@@ -38,6 +53,13 @@ class Cell {
         );
     }
 
+    /**
+     * Get an array of n cells in the specified direction
+     * @param {number} direction - Direction to look in. See Grid.directions
+     * @param {number} [n=-1] - Number of cells to return. Default to -1 which returns to the edge. If a number is specified and returnUndefinedCells is true, will return empty cells up to that number
+     * @param {boolean} [includeSelf=false] - Whether or not to include the cell itself in result
+     * @return {Cell[]} Array of n cells going off in the specified direction
+     */
     getCellsInDirection(direction, n = -1, includeSelf = false) {
         return this.grid.getCellsFromCoordsInDirection(
             this.row,
@@ -48,12 +70,22 @@ class Cell {
         );
     }
 
+    /**
+     * Get an array containing one cell from each specified direction
+     * @param {number[]} direction - Directions to look in. See Grid.directions
+     * @return {Cell[]} Array of cells from each specified direction
+     */
     getCellInDirections(directions) {
         return this.getCellsInDirections(directions, 1, false).map(
             (cells) => cells[0]
         );
     }
 
+    /**
+     * Get the first cell in the specified direction
+     * @param {number[]} direction - Direction to look in. See Grid.directions
+     * @return {Cell} Cells from the specified direction
+     */
     getCellInDirection(direction) {
         return this.getCellsInDirection(direction, 1, false)[0];
     }
@@ -278,6 +310,36 @@ export default class Grid {
             outputArray.push(this.getCell(r, i));
         }
         return outputArray;
+    }
+
+    /**
+     * Return all cardinal neighbors (up, right, down, left) in clockwise order starting with up
+     * @param {number} r - Row
+     * @param {number} c - Column
+     * @return {Cell[]} Array of cells
+     */
+    getCardinalNeighbors(r, c) {
+        return this.getCellsFromCoordsInDirections(
+            r,
+            c,
+            Grid.cardinalDirections,
+            1
+        ).map((dirArray) => dirArray[0]);
+    }
+
+    /**
+     * Return all neighbors in clockwise order starting with up
+     * @param {number} r - Row
+     * @param {number} c - Column
+     * @return {Cell[]} Array of cells
+     */
+    getAllNeighbors(r, c) {
+        return this.getCellsFromCoordsInDirections(
+            r,
+            c,
+            Grid.allDirections,
+            1
+        ).map((dirArray) => dirArray[0]);
     }
 
     /**

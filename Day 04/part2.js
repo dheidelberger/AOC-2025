@@ -35,9 +35,10 @@ while (canRemove) {
     let removedThisIteration = 0;
     const paper = g.getAllCells().filter((cell) => cell.value == '@');
     for (const c of paper) {
-        const neighbors = c.getCellsInDirections(Grid.allDirections, 1);
-        const atCount = neighbors.filter((cell) => cell[0].value == '@');
-        if (atCount.length < 4) {
+        const neighbors = c
+            .getCellInDirections(Grid.allDirections)
+            .filter((cell) => cell.value == '@').length;
+        if (neighbors < 4) {
             removable.push(c);
             removed++;
             removedThisIteration++;
