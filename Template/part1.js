@@ -22,8 +22,8 @@ const testMode = true;
 
 let input = fs
     .readFileSync(testMode ? 'testinput.txt' : 'input.txt', 'utf-8')
-    .trim()
-    .split('\n');
+    .split('\n')
+    .slice(0, -1);
 
 console.log(input);
 

@@ -17,7 +17,7 @@ function writeTestData(dir, testInputFile) {
         if (fileText !== '') {
             console.log('Make the test file');
             console.log(fileText);
-            fs.writeFileSync(testInputFilePath, fileText);
+            fs.writeFileSync(testInputFilePath, fileText + '\n');
             console.log('Done');
         }
     }
