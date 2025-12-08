@@ -11,6 +11,7 @@ import * as setUtilities from '../Utilities/setUtilities.js';
 import Grid from '../Utilities/Grid.js';
 import Timer from '../Utilities/Timer.js';
 import { getInput } from '../Utilities/inputUtils.js';
+import { print } from '../Utilities/miscUtils.js';
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename); // get the name of the directory
 const testInputFile = 'testinput.txt';
